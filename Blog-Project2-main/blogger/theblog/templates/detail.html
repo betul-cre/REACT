@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{{post.title_tag}}{% endblock %}
+
+{% block content %}
+
+
+<h1>{{post.title}} </h1>
+<small>By: {{post.author}} - {{post.post_date}} ➻ 
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <a href="{% url 'Update' post.pk %}" class="btn btn-outline-secondary" >Edit Post</a>
+            <a href="{% url 'Delete' post.pk %}" class="btn btn-outline-danger"> Delete Post</a>
+        {% endif %}
+    {% endif %}
+
+</small><br>
+
+<hr color="#dd3333;">
+<hr color="#42B3E5">
+<br>
+{{post.body| safe | slice:":200"}}
+
+
+<br><br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+<br><br>
+<hr>
+<br><br>
+<form action="{% url 'like_post' post.pk %}" method="POST">
+    {% csrf_token %}
+
+{% if user.is_authenticated %}
+    {%if liked %}
+        <button type="submit", name = "post_id", value ="{{ post.id }}", class="btn btn-outline-warning btn-sm">Unlike</button>
+    {% else %}
+        <button type="submit", name = "post_id", value ="{{ post.id }}", class="btn btn-outline-success btn-sm">Like</button>
+    {% endif %}
+{% else %}
+    <small><a class="btn btn-primary btn-sm"  href="{% url 'login' %}">Giriş Yap</a> Beğenmek için giriş yapmalısınız!</small>
+{% endif %} 
+
+      <font color = "green">{{ total_likes }} Likes</font> </form>
+{% endblock %}

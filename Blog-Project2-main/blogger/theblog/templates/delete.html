@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Delete Blog Post{% endblock %}
+
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>
+        <p style="color:gray;">Yazı Sil...</p>
+        </h1> 
+        <br><br> 
+        <h3>Delete : {{post.title}}</h3>
+        <div class="mb-3">
+            <table>
+            <form method="POST">
+                {% csrf_token %}
+            <strong>Silmek istediğinize emin misiniz?</strong>
+                </table>
+            <button class="btn btn-danger">Delete !</button>
+        </div>
+    {% else %}
+    Bu postu silemezsiniz!
+    {% endif %}
+
+{% else %}
+Bu postu silemezsiniz!
+{% endif %}
+
+
+
+{% endblock %}

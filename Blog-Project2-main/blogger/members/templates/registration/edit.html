@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Profili Düzenle{% endblock %}
+
+
+
+{% block content %}
+<h1>
+<p style="color:gray;">Profili Düzenle</p>
+</h1> 
+<br><br> 
+<div class="mb-3">
+    <table>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        </table>
+    <button class="btn btn-success">Profili Güncelle</button>
+</div>
+
+
+
+{% endblock %}

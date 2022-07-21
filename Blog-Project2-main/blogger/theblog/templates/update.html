@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Edit Blog Post{% endblock %}
+
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>
+        <p style="color:gray;">Yazı Güncelle...</p>
+        </h1> 
+        <br><br> 
+        <div class="mb-3">
+            <table>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                </table>
+            <button class="btn btn-success">Update</button>
+        </div>
+    {% else %}
+    Bu postu değiştiremezsiniz!
+    {% endif %}
+{% else %}
+Bu postu değiştiremezsiniz!
+{% endif %}
+
+
+
+{% endblock %}

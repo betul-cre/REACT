@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Giriş Yap{% endblock %}
+
+
+
+{% block content %}
+<h1>
+<p style="color:gray;">Giriş Yap...</p>
+</h1> 
+<br><br> 
+<div class="mb-3">
+    <table>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        </table>
+    <button class="btn btn-success">Giriş Yap</button>
+</div>
+
+
+
+{% endblock %}

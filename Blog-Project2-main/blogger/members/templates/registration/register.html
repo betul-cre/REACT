@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Kayıt Ol{% endblock %}
+
+
+
+{% block content %}
+<h1>
+<p style="color:gray;">Kayıt Ol...</p>
+</h1> 
+<br><br> 
+<div class="mb-3">
+    <table>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        </table>
+    <button class="btn btn-success">Kayıt Ol</button>
+</div>
+
+
+
+{% endblock %}

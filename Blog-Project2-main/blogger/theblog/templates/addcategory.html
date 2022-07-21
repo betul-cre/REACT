@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Kategori ekle{% endblock %}
+
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<h1>
+<p style="color:gray;">Kategori  Ekle...</p>
+</h1> 
+<br><br> 
+<div class="mb-3">
+    <table>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        </table>
+    <button class="btn btn-success">Kategori ekle</button>
+</div>
+{% else%}
+Post eklemek için önce giriş yapmalısınız!
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} BloK! {% endblock %}
+
+{% block content %}
+<h1>
+    <p style="color:gray;">BloK!</p>
+</h1> 
+<ul>{% for post in object_list %}
+    <li><a href = "{% url 'detail' post.pk %}" class="btn btn-secondary"> ❝{{post.title}}❞</a> ❮<a href="{% url 'Category' post.category %}" class="btn btn-outline-dark btn-sm">{{post.category}}</a>❯  {{post.author}}  ⧼{{post.post_date}}⧽ ➻  {% if user.is_authenticated %} 
+            {% if user.id == post.author.id %}
+                <a href="{% url 'Update' post.pk %}" class="btn btn-outline-secondary" >Edit Post</a> 
+                <a href="{% url 'Delete' post.pk %}" class="btn btn-outline-danger"> Delete Post</a>
+            {% endif %}
+        {% endif %} 
+        <br/>
+        {{ post.snippet }}
+       </li>
+{% endfor %}</ul>
+
+{% endblock %}
